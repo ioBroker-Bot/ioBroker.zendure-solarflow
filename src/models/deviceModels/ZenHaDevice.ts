@@ -519,8 +519,9 @@ export class ZenHaDevice {
         limit = 0;
       } else if (limit > 0 && limit <= 30) {
         limit = 30;
-      } else if (limit > this.maxInputLimit) {
-        limit = this.maxInputLimit;
+      } else if (limit > Math.abs(this.maxInputLimit)) {
+        // Get absolute number, as maxInputLimit is negative
+        limit = Math.abs(this.maxInputLimit);
       }
 
       if (this.productKey.includes("8bm93h")) {
