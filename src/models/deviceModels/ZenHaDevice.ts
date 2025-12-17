@@ -507,7 +507,12 @@ export class ZenHaDevice {
   public setInputLimit(limit: number): void {
     if (this.adapter.mqttClient && this.productKey && this.deviceKey) {
       // Limit has always to be positive!
-      limit = Math.abs(limit);
+      if (limit < 0) {
+        this.adapter.log.debug(
+          `[setInputLimit] limit ${limit} is negative, converting to positive!`
+        );
+        limit = Math.abs(limit);
+      }
 
       if (limit) {
         limit = Math.round(limit);
@@ -1157,7 +1162,7 @@ export class ZenHaDevice {
       const currentEnergyState =
         await this.adapter?.getStateAsync(stateNameEnergyWh);
 
-      if (currentEnergyState?.val == 0) {
+      if (!currentEnergyState?.val || currentEnergyState?.val == 0) {
         // Workaround, set Val to very low value to avoid Jump in data...
         await this.adapter?.setState(stateNameEnergyWh, 0.000001, true);
       } else if (
