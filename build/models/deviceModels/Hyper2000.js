@@ -107,13 +107,13 @@ class Hyper2000 extends import_ZenHaDevice.ZenHaDevice {
         );
         limit = this.maxOutputLimit;
       }
-      this.adapter.msgCounter += 1;
+      this.messageId += 1;
       const timestamp = /* @__PURE__ */ new Date();
       timestamp.setMilliseconds(0);
       let _arguments = [];
       if (limit < 0) {
         this.adapter.log.debug(
-          `[setDeviceAutomationInOutLimit] Using CHARGE variant of HYPER device automation, as device '${this.deviceKey}' detected and limit is negative!`
+          `[setDeviceAutomationInOutLimit] Using CHARGE variant of HYPER device automation, as device '${this.deviceKey}' detected and limit (${limit}) is negative!`
         );
         _arguments = [
           {
@@ -121,7 +121,7 @@ class Hyper2000 extends import_ZenHaDevice.ZenHaDevice {
             autoModelValue: {
               chargingType: 1,
               price: 2,
-              chargingPower: limit,
+              chargingPower: Math.abs(limit),
               prices: [
                 1,
                 1,
@@ -157,7 +157,7 @@ class Hyper2000 extends import_ZenHaDevice.ZenHaDevice {
         ];
       } else {
         this.adapter.log.debug(
-          `[setDeviceAutomationInOutLimit] Using FEED IN variant of HYPER device automation, as device '${this.productName}' detected and limit is positive!`
+          `[setDeviceAutomationInOutLimit] Using FEED IN variant of HYPER device automation, as device '${this.productName}' detected and limit (${limit}) is positive!`
         );
         _arguments = [
           {
@@ -176,7 +176,7 @@ class Hyper2000 extends import_ZenHaDevice.ZenHaDevice {
       const deviceAutomation = {
         arguments: _arguments,
         function: "deviceAutomation",
-        messageId: this.adapter.msgCounter,
+        messageId: this.messageId,
         deviceKey: this.deviceKey,
         timestamp: timestamp.getTime() / 1e3
       };

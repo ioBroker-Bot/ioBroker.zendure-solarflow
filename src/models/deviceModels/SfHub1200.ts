@@ -149,7 +149,7 @@ export class SfHub1200 extends ZenHaDevice {
         }
       }
 
-      this.adapter.msgCounter += 1;
+      this.messageId += 1;
 
       const timestamp = new Date();
       timestamp.setMilliseconds(0);
@@ -158,14 +158,14 @@ export class SfHub1200 extends ZenHaDevice {
 
       if (limit < 0) {
         this.adapter.log.debug(
-          `[setDeviceAutomationInOutLimit] Using CHARGE variant of HUB device automation, as device '${this.productKey}' detected and limit is negative!`
+          `[setDeviceAutomationInOutLimit] Using CHARGE variant of HUB device automation, as device '${this.productKey}' detected and limit (${limit}) is negative!`
         );
         _arguments = [
           {
             autoModelProgram: 2,
             autoModelValue: {
               chargingType: 1,
-              chargingPower: limit,
+              chargingPower: Math.abs(limit),
               freq: 0,
               outPower: 0,
             },
@@ -176,7 +176,7 @@ export class SfHub1200 extends ZenHaDevice {
       } else {
         // Output
         this.adapter.log.debug(
-          `[setDeviceAutomationInOutLimit] Using FEED IN variant of Hub device automation, as device '${this.productKey}' detected and limit is positive!`
+          `[setDeviceAutomationInOutLimit] Using FEED IN variant of Hub device automation, as device '${this.productKey}' detected and limit (${limit}) is positive!`
         );
         _arguments = [
           {
@@ -191,7 +191,7 @@ export class SfHub1200 extends ZenHaDevice {
       const deviceAutomation = {
         arguments: _arguments,
         function: "deviceAutomation",
-        messageId: this.adapter.msgCounter,
+        messageId: this.messageId,
         deviceKey: this.deviceKey,
         timestamp: timestamp.getTime() / 1000,
       };

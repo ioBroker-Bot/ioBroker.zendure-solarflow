@@ -21,6 +21,7 @@ export class ZenHaDevice {
   public deviceKey: string;
   public productName: string;
   public deviceName: string;
+  public messageId: number = 0;
   public batteries: IDevicePack[] = [];
 
   public iotTopic: string = "";
@@ -490,7 +491,7 @@ export class ZenHaDevice {
         if (currentLimit != limit) {
           const outputlimit = { properties: { outputLimit: limit } };
 
-          this.adapter.msgCounter += 1;
+          this.messageId += 1;
 
           const timestamp = new Date();
           timestamp.setMilliseconds(0);
@@ -1496,15 +1497,27 @@ export class ZenHaDevice {
       let stateNameEnergyWh = "";
       let stateNameEnergykWh = "";
 
-      if (stateKey == "pvPower1") {
-        stateNameEnergyWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv1EnergyTodayWh`;
-        stateNameEnergykWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv1EnergyTodaykWh`;
-      } else if (stateKey == "pvPower2") {
-        stateNameEnergyWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv2EnergyTodayWh`;
-        stateNameEnergykWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv2EnergyTodaykWh`;
-      } else {
-        stateNameEnergyWh = `${this.productKey}.${this.deviceKey}.calculations.${stateKey}EnergyTodayWh`;
-        stateNameEnergykWh = `${this.productKey}.${this.deviceKey}.calculations.${stateKey}EnergyTodaykWh`;
+      switch (stateKey) {
+        case "pvPower1":
+          stateNameEnergyWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv1EnergyTodayWh`;
+          stateNameEnergykWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv1EnergyTodaykWh`;
+          break;
+        case "pvPower2":
+          stateNameEnergyWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv2EnergyTodayWh`;
+          stateNameEnergykWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv2EnergyTodaykWh`;
+          break;
+        case "pvPower3":
+          stateNameEnergyWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv3EnergyTodayWh`;
+          stateNameEnergykWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv3EnergyTodaykWh`;
+          break;
+        case "pvPower4":
+          stateNameEnergyWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv4EnergyTodayWh`;
+          stateNameEnergykWh = `${this.productKey}.${this.deviceKey}.calculations.solarInputPv4EnergyTodaykWh`;
+          break;
+        default:
+          stateNameEnergyWh = `${this.productKey}.${this.deviceKey}.calculations.${stateKey}EnergyTodayWh`;
+          stateNameEnergykWh = `${this.productKey}.${this.deviceKey}.calculations.${stateKey}EnergyTodaykWh`;
+          break;
       }
 
       await this.adapter?.setState(stateNameEnergyWh, 0, true);

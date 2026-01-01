@@ -1,8 +1,47 @@
 {
   "common": {
     "name": "zendure-solarflow",
-    "version": "3.2.0",
+    "version": "3.3.0-alpha.0",
     "news": {
+      "3.3.0-alpha.0": {
+        "en": "Test deviceAutomation for ACE1500",
+        "de": "TestgerätAutomation für ACE1500",
+        "ru": "Испытательное устройство Автоматизация для ACE1500",
+        "pt": "Dispositivo de testeAutomação para ACE1500",
+        "nl": "TestapparaatAutomatie voor ACE1500",
+        "fr": "Dispositif d'essaiAutomation pour ACE1500",
+        "it": "Dispositivo di provaAutomazione per ACE1500",
+        "es": "Equipo de pruebaAutomatización para ACE1500",
+        "pl": "Automatyzacja urządzenia testowego dla ACE1500",
+        "uk": "Тестовий пристрійАвтоматика для ACE1500",
+        "zh-cn": "ACE1500的测试设备自动化"
+      },
+      "3.2.2": {
+        "en": "Fix reset of calculation states if PV3+4 (SF 800 Pro)",
+        "de": "Reset von Berechnungszuständen, wenn PV3+4 (SF 800 Pro)",
+        "ru": "Исправьте сброс расчётных состояний, если PV3+4 (SF 800 Pro)",
+        "pt": "Corrigir a redefinição dos estados de cálculo se PV3+4 (SF 800 Pro)",
+        "nl": "Fix reset van berekening staat als PV3+4 (SF 800 Pro)",
+        "fr": "Correction de la remise des états de calcul si PV3+4 (SF 800 Pro)",
+        "it": "Ripristino degli stati di calcolo se PV3+4 (SF 800 Pro)",
+        "es": "Fijar el reajuste de los estados de cálculo si PV3+4 (SF 800 Pro)",
+        "pl": "Napraw reset stanów obliczeniowych, jeśli PV3 + 4 (SF 800 Pro)",
+        "uk": "Кріплення розрахунків станів, якщо PV3 +4 (SF 800 Pro)",
+        "zh-cn": "如果PV3+4(SF 800 Pro),则固定重置计算"
+      },
+      "3.2.1": {
+        "en": "Fix setDeviceAutomation charging mode",
+        "de": "Fix setDeviceAutomatisieren Lademodus",
+        "ru": "Режим зарядки DeviceAutomation",
+        "pt": "Corrigir o setDispositivoModo de carregamento automático",
+        "nl": "Fix setDeviceAutomation laadmodus",
+        "fr": "Correction du mode de chargement setDeviceAutomation",
+        "it": "Fix setModalità di ricarica dell'automazione",
+        "es": "Configuración fijaDeviceModo de carga de automatización",
+        "pl": "Napraw tryb ładowania setDeviceAutomation",
+        "uk": "Виправлення setDeviceAutomation режим зарядки",
+        "zh-cn": "修复设置Device自动充电模式"
+      },
       "3.2.0": {
         "en": "Fix inputLimit on certain devices\nFix calculation of PV3 & 4 again (hopefully now 100%)\nAdd some more specific debug messages\nRemove misleading error message on adapter start\nReplace restart on checkStatesJob with a debug message (I think Zendure cloud is stable now)\nUpdate adapter to adapter-react-v5 (MUI v5)\nFix commandbar in settings",
         "de": "EingabeLimit auf bestimmte Geräte fixieren\nFixe Berechnung von PV3 & 4 wieder (hoffentlich jetzt 100%)\nFügen Sie einige spezifische Debug-Nachrichten hinzu\nEntfernen irreführende Fehlermeldung auf Adapterstart\nWiederstart ersetzen StatesJob mit einer Debug-Nachricht (ich glaube, Zendure Cloud ist jetzt stabil)\nUpdate-Adapter auf Adapter-React-v5 (MUI v5)\nBefehlsleiste in Einstellungen festlegen",
@@ -54,45 +93,6 @@
         "pl": "Popraw brakujące inteligentne Stan trybu dla SF 800 Pro",
         "uk": "Виправлення відсутній смарт Статус на сервери",
         "zh-cn": "修复丢失的智能 SF800 Pro 模式状态"
-      },
-      "3.0.7": {
-        "en": "Fix creation of SF 800 Pro device",
-        "de": "Feste Erstellung von SF 800 Pro Gerät",
-        "ru": "Создание SF 800 Устройство Pro",
-        "pt": "Fixar a criação de SF 800 Dispositivo Pro",
-        "nl": "Fix creatie van SF 800 Pro apparaat",
-        "fr": "Correction de la création de SF 800 Appareil pro",
-        "it": "Creazione fissa di SF 800 Dispositivo Pro",
-        "es": "Creación fija de SF 800 Dispositivo Pro",
-        "pl": "Popraw tworzenie SF 800 Urządzenie Pro",
-        "uk": "Фіксація створення SF 800 Про пристрій",
-        "zh-cn": "固定创建 SF 800 Pro 设备"
-      },
-      "3.0.5": {
-        "en": "Add some more log information on device creation",
-        "de": "Fügen Sie weitere Log-Informationen zur Geräteerstellung hinzu",
-        "ru": "Добавьте больше информации о журналах для создания устройств",
-        "pt": "Adicionar mais informações de log na criação do dispositivo",
-        "nl": "Voeg wat meer loginformatie toe over het aanmaken van een apparaat",
-        "fr": "Ajoutez d'autres informations de journal sur la création de l'appareil",
-        "it": "Aggiungi altre informazioni di log sulla creazione del dispositivo",
-        "es": "Añadir más información de registro en la creación del dispositivo",
-        "pl": "Dodaj więcej informacji o tworzeniu urządzenia",
-        "uk": "Додайте ще інформацію про пристрій",
-        "zh-cn": "添加更多关于设备创建的日志信息"
-      },
-      "3.0.4": {
-        "en": "Fix inputLimit issue\nFix Wifi status not updating when packData changes",
-        "de": "InputLimit Problem beheben\nWifi-Status nicht aktualisieren, wenn packData Änderungen",
-        "ru": "Исправить ошибку inputLimit issue\nСтатус Wi-Fi не обновляется при изменении пакетных данных",
-        "pt": "Corrigir a entradaLimit issue\nCorrigir o estado do Wifi não actualizado quando o pacote de dados mudar",
-        "nl": "Fix inputLimit probleem\nFix Wifi-status niet bijwerken wanneer packData wijzigingen",
-        "fr": "Correction du problème d'entréeLimit\nCorrection de l'état Wifi non mis à jour lorsque le paquetLes données changent",
-        "it": "Risolvere il numero di inputLimit\nFissare lo stato Wifi non aggiornando quando PackData cambia",
-        "es": "Corrección de entrada\nFijar el estado de Wifi no actualizar cuando el paqueteLos cambios de datos",
-        "pl": "Fix inputLimit wydania\nNaprawianie stanu Wifi nie aktualizuje się przy zmianie PackData",
-        "uk": "Виправлення вхідного номера\nВиправлення стану Wifi не оновлення при зміні пакетаData",
-        "zh-cn": "修正输入范围\nBackData 更改时不更新 Wifi 状态"
       }
     },
     "titleLang": {
